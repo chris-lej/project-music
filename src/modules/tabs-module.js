@@ -4,6 +4,7 @@ import { daoTabsGet } from '../dao/tabs-dao.js';
 // Constants
 // ------------------------------------
 
+export const TABS_REQUESTED = 'TABS_REQUESTED'
 export const TABS_RECEIVE_GET_SUCCESS = 'TABS_RECEIVE_GET_SUCCESS';
 
 // ------------------------------------
@@ -11,14 +12,17 @@ export const TABS_RECEIVE_GET_SUCCESS = 'TABS_RECEIVE_GET_SUCCESS';
 // ------------------------------------
 
 export const initialState = {
-  objects: []
+  objects: [],
+  tabsIsLoading: false
 };
 
 // ------------------------------------
 // Selectors
 // ------------------------------------
 
-
+export const tabsTree = (state) => state.tabs || {};
+export const tabsObjects = (state) => tabsTree(state).objects || [];
+export const tabsExist = (state) => tabsTree(state).objects.length || false;
 
 // ------------------------------------
 // Actions
@@ -29,11 +33,19 @@ export const tabsReceiveGetSuccess = (payload = {}) => ({
   payload
 });
 
-export const tabsRequestGet = (term) => (dispatch) => daoTabsGet(term)
-  .then(
-    (response) => dispatch(tabsReceiveGetSuccess(response.data)),
-    (err) => dispatch(tabsReceiveGetFailure(err))
-  );
+export const tabsRequestGet = (term) => (dispatch) => {
+  dispatch({
+    type: TABS_REQUESTED
+  });
+
+  return (
+    daoTabsGet(term)
+      .then(
+        (response) => dispatch(tabsReceiveGetSuccess(response.data)),
+        (err) => dispatch(tabsReceiveGetFailure(err))
+      )
+  )
+};
 
 export const tabsReceiveGetFailure = (payload = {}) => () => Promise.reject(payload);
 
@@ -42,12 +54,17 @@ export const tabsReceiveGetFailure = (payload = {}) => () => Promise.reject(payl
 // ------------------------------------
 
 const ACTION_HANDLERS = {
+  [TABS_REQUESTED]: (state) => ({
+    ...state,
+    tabsIsLoading: true
+  }),
   [TABS_RECEIVE_GET_SUCCESS]: (state, action) => {
     if (action.payload instanceof Object) {
       const {objects} = action.payload;
       return {
         ...state,
-        objects
+        objects,
+        tabsIsLoading: false
       };
     }
     return {...state};

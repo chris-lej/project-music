@@ -22,6 +22,9 @@ const initialState = {
 // Selectors
 // ------------------------------------
 
+export const searchMusicTree = (state) => state.music || {};
+export const searchMusicSong = (state) => searchMusicTree(state).song || '';
+export const searchMusicArtist = (state) => searchMusicTree(state).artist || '';
 
 // ------------------------------------
 // Actions
