@@ -1,32 +1,65 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import {
+  updateArtist,
+  updateSong,
+  searchMusicSong,
+  searchMusicArtist
+} from "../../modules/music-module";
+import {push} from "react-router-redux";
+import {bindActionCreators} from "redux";
+import {tabsRequestGet} from "../../modules/tabs-module";
+
+const mapStateToProps = state => ({
+  song: searchMusicSong(state),
+  artist: searchMusicArtist(state)
+});
+
+const mapDispatchToProps = dispatch => bindActionCreators({
+  updateSong,
+  updateArtist,
+  tabsRequestGet,
+  changePage: () => push('/about-us')
+}, dispatch);
 
 class SearchBar extends React.Component {
 
+  handleArtistChange = (e) => {
+    this.props.updateArtist(e.target.value)
+  };
+
+  handleSongChange = (e) => {
+    this.props.updateSong(e.target.value)
+  };
+
+  handleSearch = (e) => {
+    this.props.tabsRequestGet(this.props.song)
+  };
+
   render() {
     return (
-      <form ref="searchForm" className="form-group">
-        <label>Artist</label>
+      <form ref="searchForm" className="form-group" onSubmit={this.handleSubmit}>
         <input
           type="text"
-          className="form-control"
-          ref="search"
+          name="artist"
+          placeholder="Artist Name"
+          onChange={this.handleArtistChange}
         />
-        <label>Music</label>
         <input
           type="text"
-          className="form-control"
-          ref="song"
+          name="song"
+          placeholder="Song Name"
+          onChange={this.handleSongChange}
         />
-        <span className="input-group-btn">
-          <button
-            className="btn btn-default"
-            type="type"
-            onClick={this.props.updateMusic}
-          >Go!</button>
-        </span>
+        <button
+          type="button"
+          onClick={this.handleSearch}
+          >
+        Search
+        </button>
       </form>
     )
   }
 }
 
-export default SearchBar;
+export default connect(mapStateToProps, mapDispatchToProps)(SearchBar);
