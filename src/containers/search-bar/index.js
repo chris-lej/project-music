@@ -4,7 +4,11 @@ import {
   updateArtist,
   updateSong,
   searchMusicSong,
-  searchMusicArtist
+  searchMusicArtist,
+  updateLastArtist,
+  updateLastSong,
+  searchLastArtist,
+  searchLastSong
 } from "../../modules/music-module";
 import {push} from "react-router-redux";
 import {bindActionCreators} from "redux";
@@ -12,13 +16,17 @@ import {tabsRequestGet} from "../../modules/tabs-module";
 
 const mapStateToProps = state => ({
   song: searchMusicSong(state),
-  artist: searchMusicArtist(state)
+  artist: searchMusicArtist(state),
+  lastArtist: searchLastArtist(state),
+  lastSong: searchLastSong(state)
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators({
   updateSong,
   updateArtist,
   tabsRequestGet,
+  updateLastArtist,
+  updateLastSong,
   changePage: () => push('/about-us')
 }, dispatch);
 
@@ -33,7 +41,11 @@ class SearchBar extends React.Component {
   };
 
   handleSearch = (e) => {
-    this.props.tabsRequestGet(this.props.song)
+    this.props.updateLastArtist(this.props.artist);
+    this.props.updateLastSong(this.props.song)
+      .then(() => {
+        this.props.tabsRequestGet(this.props.lastSong)
+      })
   };
 
   render() {
@@ -54,7 +66,7 @@ class SearchBar extends React.Component {
         <button
           type="button"
           onClick={this.handleSearch}
-          >
+        >
         Search
         </button>
       </form>

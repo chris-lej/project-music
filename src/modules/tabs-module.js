@@ -21,6 +21,7 @@ export const initialState = {
 // ------------------------------------
 
 export const tabsTree = (state) => state.tabs || {};
+export const tabsIsLoading = (state) => state.tabs.tabsIsLoading || false;
 export const tabsObjects = (state) => tabsTree(state).objects || [];
 export const tabsExist = (state) => tabsTree(state).objects.length || false;
 

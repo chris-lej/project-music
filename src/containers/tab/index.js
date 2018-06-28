@@ -2,13 +2,15 @@ import React from 'react';
 import { connect } from 'react-redux';
 import {push} from "react-router-redux";
 import {bindActionCreators} from "redux";
-import { tabsRequestGet, tabsObjects, tabsExist } from '../../modules/tabs-module';
-import { searchMusicArtist } from '../../modules/music-module';
+import { tabsRequestGet, tabsObjects, tabsExist, tabsIsLoading } from '../../modules/tabs-module';
+import { searchMusicArtist, searchLastArtist } from '../../modules/music-module';
 
 const mapStateToProps = (state) => ({
   tabsObjects: tabsObjects(state),
   tabsExist: tabsExist(state),
-  searchMusicArtist: searchMusicArtist(state)
+  searchMusicArtist: searchMusicArtist(state),
+  lastArtist: searchLastArtist(state),
+  tabsIsLoading: tabsIsLoading(state)
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators({
@@ -37,17 +39,27 @@ class Tab extends React.Component{
   render = () =>  {
     return (
       <div>
-        {this.props.tabsExist
+        {this.props.tabsIsLoading
         ? <div>
-            {this.tabByArtist(this.props.searchMusicArtist)}
+            Loading...
           </div>
-        :<div>
-            Tab will be displayed here
+        : <div>
+            {this.props.tabsExist && !this.props.tabsIsLoading
+              ? <div>
+                {this.tabByArtist(this.props.lastArtist)}
+              </div>
+              :<div>
+                Tab will be displayed here
+              </div>
+            }
           </div>
         }
+
       </div>
     )
   };
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Tab);
+
+
