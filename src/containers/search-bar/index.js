@@ -4,36 +4,61 @@ import {
   updateArtist,
   updateSong,
   searchMusicSong,
-  searchMusicArtist
+  searchMusicArtist,
+  updateLastArtist,
+  updateLastSong,
+  searchLastArtist,
+  searchLastSong,
+  toggleAcoustic,
+  toggleLesson
 } from "../../modules/music-module";
 import {push} from "react-router-redux";
 import {bindActionCreators} from "redux";
 import {tabsRequestGet} from "../../modules/tabs-module";
+import { Button, Tooltip } from 'reactstrap';
 
 const mapStateToProps = state => ({
   song: searchMusicSong(state),
-  artist: searchMusicArtist(state)
+  artist: searchMusicArtist(state),
+  lastArtist: searchLastArtist(state),
+  lastSong: searchLastSong(state)
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators({
+  toggleLesson,
+  toggleAcoustic,
   updateSong,
   updateArtist,
   tabsRequestGet,
+  updateLastArtist,
+  updateLastSong,
   changePage: () => push('/about-us')
 }, dispatch);
 
 class SearchBar extends React.Component {
 
+  formatSearchTerm = (term) => {
+    return term.replace(/\w\S*/g, (txt) => {
+      return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+    });
+  };
+
   handleArtistChange = (e) => {
-    this.props.updateArtist(e.target.value)
+    const artist = this.formatSearchTerm(e.target.value);
+    this.props.updateArtist(artist);
   };
 
   handleSongChange = (e) => {
-    this.props.updateSong(e.target.value)
+    const song = this.formatSearchTerm(e.target.value);
+    this.props.updateSong(song);
   };
 
   handleSearch = (e) => {
-    this.props.tabsRequestGet(this.props.song)
+    this.props.updateLastArtist(this.props.artist);
+    this.props.updateLastSong(this.props.song)
+      .then(() => {
+        this.props.tabsRequestGet(this.props.lastSong)
+      })
   };
 
   render() {
@@ -51,12 +76,29 @@ class SearchBar extends React.Component {
           placeholder="Song Name"
           onChange={this.handleSongChange}
         />
-        <button
+        <label>
+          Acoustic
+          <input
+            type="checkbox"
+            name="acoustic"
+            onChange={this.props.toggleAcoustic}
+          />
+        </label>
+        <label>
+          Lesson
+          <input
+            type="checkbox"
+            name="lesson"
+            onChange={this.props.toggleLesson}
+          />
+        </label>
+        <Button
           type="button"
           onClick={this.handleSearch}
-          >
+        >
         Search
-        </button>
+        </Button>
+
       </form>
     )
   }

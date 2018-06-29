@@ -2,13 +2,16 @@ import React from 'react';
 import { connect } from 'react-redux';
 import {push} from "react-router-redux";
 import {bindActionCreators} from "redux";
-import { tabsRequestGet, tabsObjects, tabsExist } from '../../modules/tabs-module';
-import { searchMusicArtist } from '../../modules/music-module';
+import { tabsRequestGet, tabsObjects, tabsExist, tabsIsLoading } from '../../modules/tabs-module';
+import { searchMusicArtist, searchLastArtist, searchLastSong } from '../../modules/music-module';
 
 const mapStateToProps = (state) => ({
   tabsObjects: tabsObjects(state),
   tabsExist: tabsExist(state),
-  searchMusicArtist: searchMusicArtist(state)
+  searchMusicArtist: searchMusicArtist(state),
+  lastArtist: searchLastArtist(state),
+  lastSong: searchLastSong(state),
+  tabsIsLoading: tabsIsLoading(state)
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators({
@@ -19,17 +22,24 @@ const mapDispatchToProps = dispatch => bindActionCreators({
 class Tab extends React.Component{
 
   tabByArtist = (artist) => {
-    const obj = this.props.tabsObjects;
+    const tabsObject = this.props.tabsObjects;
+    const toSearch = artist;
+    const matchingArtistTab = (tabsObject.find(o => o.authors.some(x => x.name === toSearch)) || {body_chords_html: ""}).body_chords_html;
+    const suggestedArtists = tabsObject.map(songs => songs.authors.map(author =>
+    //TODO: Add the link for each artists song. New Api call necessary?
+      <p>
+        <a href="#" key={author.name}>{author.name}</a>
+      </p>));
 
-    let toSearch = artist;
-    let result = (obj.find(o => o.authors.some(x => x.name === toSearch)) || {body: ""}).body;
+    if ( matchingArtistTab.length ) {
 
-    if ( result.length ) {
-      return result
-    } else
+      return <div className="content" dangerouslySetInnerHTML={{__html: matchingArtistTab}} />
+    }
+
     return (
       <div>
-        Tab not found. Please try again.
+        Tab not found because of artist, here is a list of artists with that song
+        {suggestedArtists}
       </div>
     )
   };
@@ -37,17 +47,30 @@ class Tab extends React.Component{
   render = () =>  {
     return (
       <div>
-        {this.props.tabsExist
+        {this.props.tabsIsLoading
         ? <div>
-            {this.tabByArtist(this.props.searchMusicArtist)}
+            Loading...
           </div>
-        :<div>
-            Tab will be displayed here
+        : <div>
+            {this.props.tabsExist && !this.props.tabsIsLoading
+              ? <div>
+                {this.tabByArtist(this.props.lastArtist)}
+              </div>
+              :<div>
+                {this.props.lastArtist.length || this.props.lastSong.length
+                  ? "We couldn't find anything with that crappy search you did"
+                  : "Tab will be displayed here"
+                }
+              </div>
+            }
           </div>
         }
+
       </div>
     )
   };
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Tab);
+
+
