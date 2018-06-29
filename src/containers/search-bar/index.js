@@ -15,6 +15,7 @@ import {
 import {push} from "react-router-redux";
 import {bindActionCreators} from "redux";
 import {tabsRequestGet} from "../../modules/tabs-module";
+import { Button, Tooltip } from 'reactstrap';
 
 const mapStateToProps = state => ({
   song: searchMusicSong(state),
@@ -91,12 +92,13 @@ class SearchBar extends React.Component {
             onChange={this.props.toggleLesson}
           />
         </label>
-        <button
+        <Button
           type="button"
           onClick={this.handleSearch}
         >
         Search
-        </button>
+        </Button>
+
       </form>
     )
   }

@@ -1,6 +1,7 @@
 import React from 'react';
 import SearchBar from '../search-bar';
 import Tab from '../tab';
+import './home.css'
 
 export class Home extends React.Component {
 
