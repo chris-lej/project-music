@@ -2,8 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9975d0a7-2d2d-4a93-8319-3a4b861a04f0" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/containers/search-bar/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/search-bar/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/containers/tab/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/tab/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dao/tabs-dao.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/tabs-dao.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modules/music-module.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/music-module.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -17,11 +19,32 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="tabs-dao.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="index.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/containers/search-bar/index.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="450">
+              <caret line="30" column="17" lean-forward="true" selection-start-line="30" selection-start-column="17" selection-end-line="30" selection-end-column="17" />
+              <folding>
+                <element signature="e#0#26#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="tabs-dao.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/dao/tabs-dao.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="30">
-              <caret line="2" column="22" selection-start-line="2" selection-start-column="22" selection-end-line="2" selection-end-column="22" />
+            <state relative-caret-position="165">
+              <caret line="11" lean-forward="true" selection-start-line="11" selection-end-line="11" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="music-module.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/modules/music-module.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="187">
+              <caret line="117" column="22" selection-start-line="117" selection-start-column="22" selection-end-line="117" selection-end-column="22" />
             </state>
           </provider>
         </entry>
@@ -29,8 +52,8 @@
       <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/containers/tab/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="300">
-              <caret line="20" column="34" lean-forward="true" selection-start-line="20" selection-start-column="34" selection-end-line="20" selection-end-column="34" />
+            <state relative-caret-position="600">
+              <caret line="40" column="81" lean-forward="true" selection-start-line="40" selection-start-column="81" selection-end-line="40" selection-end-column="81" />
               <folding>
                 <element signature="e#0#26#0" expanded="true" />
               </folding>
@@ -41,8 +64,8 @@
       <file leaf-file-name="tabs-module.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/modules/tabs-module.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="389">
-              <caret line="26" lean-forward="true" selection-start-line="26" selection-end-line="26" />
+            <state relative-caret-position="375">
+              <caret line="25" column="66" lean-forward="true" selection-start-line="25" selection-start-column="66" selection-end-line="25" selection-end-column="66" />
             </state>
           </provider>
         </entry>
@@ -72,14 +95,14 @@
         <option value="$PROJECT_DIR$/src/containers/search-youtube/index.js" />
         <option value="$PROJECT_DIR$/src/modules/index.js" />
         <option value="$PROJECT_DIR$/src/containers/home/index.js" />
-        <option value="$PROJECT_DIR$/src/modules/music-module.js" />
-        <option value="$PROJECT_DIR$/src/containers/search-bar/index.js" />
         <option value="$PROJECT_DIR$/src/containers/loader/loader.scss" />
         <option value="$PROJECT_DIR$/src/containers/loader/loader.css" />
         <option value="$PROJECT_DIR$/src/containers/loader/index.js" />
         <option value="$PROJECT_DIR$/src/modules/tabs-module.js" />
-        <option value="$PROJECT_DIR$/src/containers/tab/index.js" />
         <option value="$PROJECT_DIR$/src/dao/tabs-dao.js" />
+        <option value="$PROJECT_DIR$/src/containers/tab/index.js" />
+        <option value="$PROJECT_DIR$/src/modules/music-module.js" />
+        <option value="$PROJECT_DIR$/src/containers/search-bar/index.js" />
       </list>
     </option>
   </component>
@@ -100,10 +123,10 @@
     </packageJsonPaths>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-1586" />
-    <option name="y" value="-157" />
-    <option name="width" value="1586" />
-    <option name="height" value="1007" />
+    <option name="x" value="-1911" />
+    <option name="y" value="-154" />
+    <option name="width" value="1440" />
+    <option name="height" value="877" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -210,10 +233,10 @@
     </option>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-1586" y="-157" width="1586" height="1007" extended-state="0" />
+    <frame x="-1911" y="-154" width="1440" height="877" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.19361022" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.21353066" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
@@ -473,23 +496,6 @@
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/containers/search-bar/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="750">
-          <caret line="50" column="12" selection-start-line="50" selection-start-column="12" selection-end-line="50" selection-end-column="12" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/modules/music-module.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1170">
-          <caret line="80" column="11" selection-start-line="80" selection-start-column="11" selection-end-line="80" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/containers/about/index.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
@@ -521,27 +527,44 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/dao/tabs-dao.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="11" lean-forward="true" selection-start-line="11" selection-end-line="11" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/modules/tabs-module.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="389">
-          <caret line="26" lean-forward="true" selection-start-line="26" selection-end-line="26" />
+        <state relative-caret-position="375">
+          <caret line="25" column="66" lean-forward="true" selection-start-line="25" selection-start-column="66" selection-end-line="25" selection-end-column="66" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/modules/music-module.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="117" column="22" selection-start-line="117" selection-start-column="22" selection-end-line="117" selection-end-column="22" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/containers/tab/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="20" column="34" lean-forward="true" selection-start-line="20" selection-start-column="34" selection-end-line="20" selection-end-column="34" />
+        <state relative-caret-position="600">
+          <caret line="40" column="81" lean-forward="true" selection-start-line="40" selection-start-column="81" selection-end-line="40" selection-end-column="81" />
           <folding>
             <element signature="e#0#26#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/dao/tabs-dao.js">
+    <entry file="file://$PROJECT_DIR$/src/containers/search-bar/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="22" selection-start-line="2" selection-start-column="22" selection-end-line="2" selection-end-column="22" />
+        <state relative-caret-position="450">
+          <caret line="30" column="17" lean-forward="true" selection-start-line="30" selection-start-column="17" selection-end-line="30" selection-end-column="17" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

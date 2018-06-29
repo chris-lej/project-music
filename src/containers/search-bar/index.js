@@ -8,7 +8,9 @@ import {
   updateLastArtist,
   updateLastSong,
   searchLastArtist,
-  searchLastSong
+  searchLastSong,
+  toggleAcoustic,
+  toggleLesson
 } from "../../modules/music-module";
 import {push} from "react-router-redux";
 import {bindActionCreators} from "redux";
@@ -22,6 +24,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators({
+  toggleLesson,
+  toggleAcoustic,
   updateSong,
   updateArtist,
   tabsRequestGet,
@@ -32,12 +36,20 @@ const mapDispatchToProps = dispatch => bindActionCreators({
 
 class SearchBar extends React.Component {
 
+  formatSearchTerm = (term) => {
+    return term.replace(/\w\S*/g, (txt) => {
+      return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+    });
+  };
+
   handleArtistChange = (e) => {
-    this.props.updateArtist(e.target.value)
+    const artist = this.formatSearchTerm(e.target.value);
+    this.props.updateArtist(artist);
   };
 
   handleSongChange = (e) => {
-    this.props.updateSong(e.target.value)
+    const song = this.formatSearchTerm(e.target.value);
+    this.props.updateSong(song);
   };
 
   handleSearch = (e) => {
@@ -63,6 +75,22 @@ class SearchBar extends React.Component {
           placeholder="Song Name"
           onChange={this.handleSongChange}
         />
+        <label>
+          Acoustic
+          <input
+            type="checkbox"
+            name="acoustic"
+            onChange={this.props.toggleAcoustic}
+          />
+        </label>
+        <label>
+          Lesson
+          <input
+            type="checkbox"
+            name="lesson"
+            onChange={this.props.toggleLesson}
+          />
+        </label>
         <button
           type="button"
           onClick={this.handleSearch}

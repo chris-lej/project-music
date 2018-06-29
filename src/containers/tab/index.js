@@ -3,13 +3,14 @@ import { connect } from 'react-redux';
 import {push} from "react-router-redux";
 import {bindActionCreators} from "redux";
 import { tabsRequestGet, tabsObjects, tabsExist, tabsIsLoading } from '../../modules/tabs-module';
-import { searchMusicArtist, searchLastArtist } from '../../modules/music-module';
+import { searchMusicArtist, searchLastArtist, searchLastSong } from '../../modules/music-module';
 
 const mapStateToProps = (state) => ({
   tabsObjects: tabsObjects(state),
   tabsExist: tabsExist(state),
   searchMusicArtist: searchMusicArtist(state),
   lastArtist: searchLastArtist(state),
+  lastSong: searchLastSong(state),
   tabsIsLoading: tabsIsLoading(state)
 });
 
@@ -25,7 +26,7 @@ class Tab extends React.Component{
     const toSearch = artist;
     const matchingArtistTab = (tabsObject.find(o => o.authors.some(x => x.name === toSearch)) || {body_chords_html: ""}).body_chords_html;
     const suggestedArtists = tabsObject.map(songs => songs.authors.map(author =>
-    //TODO: Add the link for each artists song. New Api call necessary??
+    //TODO: Add the link for each artists song. New Api call necessary?
       <p>
         <a href="#" key={author.name}>{author.name}</a>
       </p>));
@@ -56,7 +57,10 @@ class Tab extends React.Component{
                 {this.tabByArtist(this.props.lastArtist)}
               </div>
               :<div>
-                Tab will be displayed here
+                {this.props.lastArtist.length || this.props.lastSong.length
+                  ? "We couldn't find anything with that crappy search you did"
+                  : "Tab will be displayed here"
+                }
               </div>
             }
           </div>

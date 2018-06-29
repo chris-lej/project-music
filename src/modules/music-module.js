@@ -8,6 +8,8 @@ export const UPDATE_SONG_REQUESTED = 'UPDATE_SONG_REQUESTED';
 export const UPDATE_SONG = 'UPDATE_SONG';
 export const UPDATE_LAST_ARTIST = 'UPDATE_LAST_ARTIST';
 export const UPDATE_LAST_SONG = 'UPDATE_LAST_SONG';
+export const TOGGLE_ACOUSTIC = 'TOGGLE_ACOUSTIC';
+export const TOGGLE_LESSON = 'TOGGLE_LESSON';
 
 // ------------------------------------
 // Initial State
@@ -19,7 +21,9 @@ const initialState = {
   lastArtist: '',
   lastSong: '',
   artistIsUpdating: false,
-  songIsUpdating: false
+  songIsUpdating: false,
+  isAcoustic: false,
+  isLesson: false
 };
 
 // ------------------------------------
@@ -84,11 +88,39 @@ export const updateLastSong = (lastSong) => {
   }
 };
 
+export const toggleAcoustic = () => {
+  return dispatch => {
+    dispatch({
+      type: TOGGLE_ACOUSTIC
+    });
+  }
+};
+
+export const toggleLesson = () => {
+  return dispatch => {
+    dispatch({
+      type: TOGGLE_LESSON
+    });
+  }
+};
+
 // ------------------------------------
 // Action Handlers
 // ------------------------------------
 
 const ACTION_HANDLERS = {
+  [TOGGLE_LESSON]: (state) => ({
+    ...state,
+    isLesson: !state.isLesson
+  }),
+  [TOGGLE_ACOUSTIC]: (state) => ({
+    ...state,
+    isAcoustic: !state.isAcoustic
+  }),
+  [UPDATE_ARTIST_REQUESTED]: (state) => ({
+    ...state,
+    artistIsUpdating: true
+  }),
   [UPDATE_ARTIST_REQUESTED]: (state) => ({
     ...state,
     artistIsUpdating: true
