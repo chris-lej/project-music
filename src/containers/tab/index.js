@@ -21,17 +21,24 @@ const mapDispatchToProps = dispatch => bindActionCreators({
 class Tab extends React.Component{
 
   tabByArtist = (artist) => {
-    const obj = this.props.tabsObjects;
+    const tabsObject = this.props.tabsObjects;
+    const toSearch = artist;
+    const matchingArtistTab = (tabsObject.find(o => o.authors.some(x => x.name === toSearch)) || {body_chords_html: ""}).body_chords_html;
+    const suggestedArtists = tabsObject.map(songs => songs.authors.map(author =>
+    //TODO: Add the link for each artists song. New Api call necessary??
+      <p>
+        <a href="#" key={author.name}>{author.name}</a>
+      </p>));
 
-    let toSearch = artist;
-    let result = (obj.find(o => o.authors.some(x => x.name === toSearch)) || {body: ""}).body;
+    if ( matchingArtistTab.length ) {
 
-    if ( result.length ) {
-      return result
-    } else
+      return <div className="content" dangerouslySetInnerHTML={{__html: matchingArtistTab}} />
+    }
+
     return (
       <div>
-        Tab not found. Please try again.
+        Tab not found because of artist, here is a list of artists with that song
+        {suggestedArtists}
       </div>
     )
   };
