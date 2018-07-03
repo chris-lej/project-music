@@ -1,4 +1,5 @@
 import { daoTabsGet } from '../dao/tabs-dao.js';
+import {TOGGLE_ACOUSTIC, TOGGLE_LESSON} from "./music-module";
 
 // ------------------------------------
 // Constants
@@ -6,6 +7,7 @@ import { daoTabsGet } from '../dao/tabs-dao.js';
 
 export const TABS_REQUESTED = 'TABS_REQUESTED'
 export const TABS_RECEIVE_GET_SUCCESS = 'TABS_RECEIVE_GET_SUCCESS';
+export const TOGGLE_AUTOSCROLL = 'TOGGLE_SCROLL';
 
 // ------------------------------------
 // Initial State
@@ -13,7 +15,8 @@ export const TABS_RECEIVE_GET_SUCCESS = 'TABS_RECEIVE_GET_SUCCESS';
 
 export const initialState = {
   objects: [],
-  tabsIsLoading: false
+  tabsIsLoading: false,
+  autoscroll: false
 };
 
 // ------------------------------------
@@ -50,11 +53,23 @@ export const tabsRequestGet = (term) => (dispatch) => {
 
 export const tabsReceiveGetFailure = (payload = {}) => () => Promise.reject(payload);
 
+export const toggleAutoscroll = () => {
+  return dispatch => {
+    dispatch({
+      type: TOGGLE_AUTOSCROLL
+    });
+  }
+};
+
 // ------------------------------------
 // Action Handlers
 // ------------------------------------
 
 const ACTION_HANDLERS = {
+  [TOGGLE_AUTOSCROLL]: (state) => ({
+    ...state,
+    autoscroll: !state.autoscroll
+  }),
   [TABS_REQUESTED]: (state) => ({
     ...state,
     tabsIsLoading: true

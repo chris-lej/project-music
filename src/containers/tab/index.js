@@ -4,6 +4,7 @@ import {push} from "react-router-redux";
 import {bindActionCreators} from "redux";
 import { tabsRequestGet, tabsObjects, tabsExist, tabsIsLoading } from '../../modules/tabs-module';
 import { searchMusicArtist, searchLastArtist, searchLastSong } from '../../modules/music-module';
+import './tab.css'
 
 const mapStateToProps = (state) => ({
   tabsObjects: tabsObjects(state),

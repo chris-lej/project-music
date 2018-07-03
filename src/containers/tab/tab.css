@@ -1,0 +1,26 @@
+.chordline {
+    margin-top: 1px;
+    line-height: 1.5em;
+}
+
+.chordline span {
+    position: relative;
+    color: #000;
+    font-weight: normal;
+    line-height: 2.3em;
+}
+
+.chordline span strong {
+    display: inline-block;
+    line-height: 2em;
+    position: relative;
+    width: 0;
+    top: -1.3em;
+    left: 0;
+    font: bold 80%/1 sans-serif;
+    color: #006181;
+}
+
+.chordline span strong span {
+    display: none;
+}
