@@ -1,6 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import {
+  searchIsAcoustic,
+  searchIsLesson,
   updateArtist,
   updateSong,
   searchMusicSong,
@@ -12,19 +14,23 @@ import {
   toggleAcoustic,
   toggleLesson
 } from "../../modules/music-module";
-import {push} from "react-router-redux";
-import {bindActionCreators} from "redux";
-import {tabsRequestGet} from "../../modules/tabs-module";
-import { Button, Tooltip } from 'reactstrap';
+import { videoRequestGet } from '../../modules/youtube-module'
+import { push } from "react-router-redux";
+import { bindActionCreators } from "redux";
+import { tabsRequestGet } from "../../modules/tabs-module";
+import { Button } from 'reactstrap';
 
 const mapStateToProps = state => ({
   song: searchMusicSong(state),
   artist: searchMusicArtist(state),
   lastArtist: searchLastArtist(state),
-  lastSong: searchLastSong(state)
+  lastSong: searchLastSong(state),
+  isAcoustic: searchIsAcoustic(state),
+  isLesson: searchIsLesson(state),
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators({
+  videoRequestGet,
   toggleLesson,
   toggleAcoustic,
   updateSong,
@@ -53,11 +59,23 @@ class SearchBar extends React.Component {
     this.props.updateSong(song);
   };
 
+  handleYoutubeQuery = (artist, song) => {
+    let query = artist + '' + song;
+    if ( this.props.isAcoustic ) {
+      query += ' acoustic'
+    }
+    if ( this.props.isLesson ) {
+      query += ' guitar lesson'
+    }
+    this.props.videoRequestGet(query);
+  };
+
   handleSearch = (e) => {
     this.props.updateLastArtist(this.props.artist);
     this.props.updateLastSong(this.props.song)
       .then(() => {
-        this.props.tabsRequestGet(this.props.lastSong)
+        this.props.tabsRequestGet(this.props.lastSong);
+        this.handleYoutubeQuery(this.props.lastArtist, this.props.lastSong)
       })
   };
 
@@ -93,6 +111,7 @@ class SearchBar extends React.Component {
           />
         </label>
         <Button
+          color="primary"
           type="button"
           onClick={this.handleSearch}
         >

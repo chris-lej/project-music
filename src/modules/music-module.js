@@ -35,6 +35,8 @@ export const searchMusicSong = (state) => searchMusicTree(state).song || '';
 export const searchMusicArtist = (state) => searchMusicTree(state).artist || '';
 export const searchLastArtist = (state) => searchMusicTree(state).lastArtist || '';
 export const searchLastSong = (state) => searchMusicTree(state).lastSong || '';
+export const searchIsAcoustic = (state) => searchMusicTree(state).isAcoustic || false;
+export const searchIsLesson = (state) => searchMusicTree(state).isLesson || false;
 
 // ------------------------------------
 // Actions
