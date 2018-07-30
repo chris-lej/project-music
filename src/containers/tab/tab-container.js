@@ -25,19 +25,6 @@ const mapDispatchToProps = dispatch => bindActionCreators({
 class TabContainer extends React.Component{
 
   returnContent = () => {
-    console.log(this.props.tabsIsLoading)
-    return (
-      this.props.tabsExist && !this.props.tabsIsLoading
-        ? this.tabByArtist(this.props.lastArtist)
-        : <div>
-          {(this.props.lastArtist.length || this.props.lastSong.length) && !this.props.tabsIsLoading
-            ? "We couldn't find anything with that crappy search you did"
-            : "Tab will be displayed here"}
-        </div>
-    );
-  }
-
-  banana = () => {
     if (this.props.tabsIsLoading) {
       return <Loader />
     } else if (this.props.tabsExist && !this.props.tabsIsLoading) {
@@ -72,7 +59,7 @@ class TabContainer extends React.Component{
   render = () =>  {
     return (
       <TabView
-        content={this.banana()}
+        content={this.returnContent()}
       />
     )
   };
