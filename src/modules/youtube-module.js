@@ -1,4 +1,4 @@
-import { daoYoutubeGet } from '../dao/youtube-dao.js';
+import { daoYoutubeGet } from '../dao/youtube-dao';
 
 // ------------------------------------
 // Constants
@@ -31,6 +31,8 @@ export const videoReceiveGetSuccess = (payload = {}) => ({
   payload
 });
 
+export const videoReceiveGetFailure = (payload = {}) => () => Promise.reject(payload);
+
 export const videoRequestGet = (term) => (dispatch) => {
   dispatch({
     type: VIDEO_REQUESTED
@@ -42,10 +44,8 @@ export const videoRequestGet = (term) => (dispatch) => {
         (response) => dispatch(videoReceiveGetSuccess(response)),
         (err) => dispatch(videoReceiveGetFailure(err))
       )
-  )
+  );
 };
-
-export const videoReceiveGetFailure = (payload = {}) => () => Promise.reject(payload);
 
 // ------------------------------------
 // Action Handlers

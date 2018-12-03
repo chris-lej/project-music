@@ -7,8 +7,7 @@ const mapStateToProps = (state) => ({
   youtubeSearchTree: youtubeSearchTree(state)
 });
 
-class VideoContainer extends React.Component{
-
+class VideoContainer extends React.Component {
   getVideo = () => {
     if (this.props.youtubeSearchTree.length) {
       const videoId = this.props.youtubeSearchTree[0].id.videoId;
@@ -16,20 +15,16 @@ class VideoContainer extends React.Component{
 
       return (
         url
-      )
+      );
     }
   };
 
-  render = () =>  {
-    return (
-      <VideoView
-        searchTermExists={!!this.props.youtubeSearchTree.length}
-        videoUrl={this.getVideo()}
-      />
-    );
-  };
+  render = () => (
+    <VideoView
+      searchTermExists={!!this.props.youtubeSearchTree.length}
+      videoUrl={this.getVideo()}
+    />
+  );
 }
 
 export default connect(mapStateToProps)(VideoContainer);
-
-

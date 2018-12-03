@@ -1,12 +1,18 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import './tab.css';
-import {tabsExist, tabsIsLoading, tabsObjects, tabsRequestGet} from "../../modules/tabs-module";
-import {searchLastArtist, searchLastSong, searchMusicArtist} from "../../modules/music-module";
-import {push} from "react-router-redux";
-import {bindActionCreators} from "redux";
-import TabView from './tab-view';
-import Loader from '../loader'
+import { push } from 'react-router-redux';
+import PropTypes from 'prop-types';
+import { bindActionCreators } from 'redux';
+import {
+  tabsExist, tabsIsLoading, tabsObjects, tabsRequestGet,
+} from '../../modules/tabs-module';
+import {
+  searchLastArtist, searchLastSong, searchMusicArtist,
+} from '../../modules/music-module';
+import TabByArtist from './tab-by-artist';
+import TabDefault from './tab-default';
+import TabNotFound from './tab-not-found';
+import Loader from '../loader';
 
 const mapStateToProps = (state) => ({
   tabsObjects: tabsObjects(state),
@@ -14,57 +20,36 @@ const mapStateToProps = (state) => ({
   searchMusicArtist: searchMusicArtist(state),
   lastArtist: searchLastArtist(state),
   lastSong: searchLastSong(state),
-  tabsIsLoading: tabsIsLoading(state)
+  tabsIsLoading: tabsIsLoading(state),
 });
 
-const mapDispatchToProps = dispatch => bindActionCreators({
+const mapDispatchToProps = (dispatch) => bindActionCreators({
   tabsRequestGet,
-  changePage: () => push('/about-us')
+  changePage: () => push('/about-us'),
 }, dispatch);
 
-class TabContainer extends React.Component{
-
-  returnContent = () => {
-    if (this.props.tabsIsLoading) {
-      return <Loader />
-    } else if (this.props.tabsExist && !this.props.tabsIsLoading) {
-      return this.tabByArtist(this.props.lastArtist)
-    } else if ((this.props.lastArtist.length || this.props.lastSong.length) && !this.props.tabsIsLoading) {
-      return <div> We couldn't find anything with that crappy search you did </div>
-    } return <div> Tab will be displayed here bro </div>
-  };
-
-  tabByArtist = (artist) => {
-    const tabsObject = this.props.tabsObjects;
-    const toSearch = artist;
-    const matchingArtistTab = (tabsObject.find(o => o.authors.some(x => x.name === toSearch)) || {body_chords_html: ""}).body_chords_html;
-    const suggestedArtists = tabsObject.map(songs => songs.authors.map(author =>
-      //TODO: Add the link for each artists song. New Api call necessary?
-      <p>
-        <a href="#" key={author.name}>{author.name}</a>
-      </p>));
-
-    if ( matchingArtistTab.length ) {
-      return <div className="content" dangerouslySetInnerHTML={{__html: matchingArtistTab}} />
-    }
-
+export const TabContainer = (props) => {
+  if (props.tabsIsLoading) {
+    return <Loader />;
+  } if (props.tabsExist && !props.tabsIsLoading) {
     return (
-      <div>
-        Tab not found because of artist, here is a list of artists with that song
-        {suggestedArtists}
-      </div>
-    )
-  };
-
-  render = () =>  {
-    return (
-      <TabView
-        content={this.returnContent()}
+      <TabByArtist
+        tabsObjects={props.tabsObjects}
+        tabsIsLoading={props.tabsIsLoading}
+        lastArtist={props.lastArtist}
       />
-    )
-  };
-}
+    );
+  } if ((props.lastArtist.length || props.lastSong.length) && !props.tabsIsLoading) {
+    return <TabNotFound />;
+  } return <TabDefault />;
+};
+
+TabContainer.propTypes = {
+  tabsIsLoading: PropTypes.bool.isRequired,
+  tabsExist: PropTypes.bool.isRequired,
+  tabsObjects: PropTypes.object.isRequired,
+  lastArtist: PropTypes.string.isRequired,
+  lastSong: PropTypes.string.isRequired
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(TabContainer);
-
-

@@ -5,7 +5,8 @@ import { Button } from 'reactstrap';
 export const SearchBarView = (props) => (
   <form
     className="form-group"
-    onSubmit={props.handleSubmit}>
+    onSubmit={props.handleSubmit}
+  >
     <input
       type="text"
       name="artist"
@@ -47,7 +48,7 @@ export const SearchBarView = (props) => (
 SearchBarView.propTypes = {
   toggleAcoustic: PropTypes.func.isRequired,
   toggleLesson: PropTypes.func.isRequired,
-  handleSubmit: PropTypes.func,
+  handleSubmit: PropTypes.func.isRequired,
   handleArtistChange: PropTypes.func.isRequired,
   handleSongChange: PropTypes.func.isRequired,
   handleSearch: PropTypes.func.isRequired

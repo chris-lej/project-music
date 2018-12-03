@@ -1,8 +1,8 @@
 import React from 'react';
 import SearchBar from '../search-bar';
 import Tab from '../tab';
-import Video from '../video'
-import './home.css'
+import Video from '../video';
+import './home.css';
 
 const HomeView = () => (
   <div className="container m-0">
@@ -10,11 +10,10 @@ const HomeView = () => (
       <div className="col">
         <h1>Home</h1>
       </div>
-      <div className="col">
-      </div>
+      <div className="col" />
     </div>
     <div className="row">
-      <div className='col'>
+      <div className="col">
         <SearchBar />
       </div>
     </div>
@@ -28,6 +27,8 @@ const HomeView = () => (
     </div>
   </div>
 );
+
+// @TODO Make scroll button that allow to auto-scroll and stop auto-scroll
 // import { Button } from 'reactstrap'
 // startScroll = () => {
 //   window.scrollBy(0,1);

@@ -42,68 +42,56 @@ export const searchIsLesson = (state) => searchMusicTree(state).isLesson || fals
 // Actions
 // ------------------------------------
 
-export const updateArtist = (artist) => {
-  return dispatch => {
-    dispatch({
-      type: UPDATE_ARTIST_REQUESTED
-    });
+export const updateArtist = (artist) => dispatch => {
+  dispatch({
+    type: UPDATE_ARTIST_REQUESTED
+  });
 
-    dispatch({
-      type: UPDATE_ARTIST,
-      artist
-    })
-  }
+  dispatch({
+    type: UPDATE_ARTIST,
+    artist
+  });
 };
 
-export const updateSong = (song) => {
-  return dispatch => {
-    dispatch({
-      type: UPDATE_SONG_REQUESTED
-    });
+export const updateSong = (song) => dispatch => {
+  dispatch({
+    type: UPDATE_SONG_REQUESTED
+  });
 
-    dispatch({
-      type: UPDATE_SONG,
-      song
-    })
-  }
+  dispatch({
+    type: UPDATE_SONG,
+    song
+  });
 };
 
-export const updateLastArtist = (lastArtist) => {
-  return dispatch => {
-    dispatch({
-      type: UPDATE_LAST_ARTIST,
-      lastArtist
-    });
-  }
+export const updateLastArtist = (lastArtist) => dispatch => {
+  dispatch({
+    type: UPDATE_LAST_ARTIST,
+    lastArtist
+  });
 };
 
-export const updateLastSong = (lastSong) => {
-  return dispatch => {
-    dispatch({
-      type: UPDATE_LAST_SONG,
-      lastSong
-    });
+export const updateLastSong = (lastSong) => dispatch => {
+  dispatch({
+    type: UPDATE_LAST_SONG,
+    lastSong
+  });
 
-    return(
-      Promise.resolve()
-    )
-  }
+  return (
+    Promise.resolve()
+  );
 };
 
-export const toggleAcoustic = () => {
-  return dispatch => {
-    dispatch({
-      type: TOGGLE_ACOUSTIC
-    });
-  }
+export const toggleAcoustic = () => dispatch => {
+  dispatch({
+    type: TOGGLE_ACOUSTIC
+  });
 };
 
-export const toggleLesson = () => {
-  return dispatch => {
-    dispatch({
-      type: TOGGLE_LESSON
-    });
-  }
+export const toggleLesson = () => dispatch => {
+  dispatch({
+    type: TOGGLE_LESSON
+  });
 };
 
 // ------------------------------------
@@ -132,7 +120,7 @@ const ACTION_HANDLERS = {
     artist: payload.artist,
     artistIsUpdating: !state.artistIsUpdating
   }),
-  [UPDATE_SONG_REQUESTED]: (state, action) => ({
+  [UPDATE_SONG_REQUESTED]: (state) => ({
     ...state,
     songIsUpdating: true
   }),

@@ -1,11 +1,10 @@
-import { daoTabsGet } from '../dao/tabs-dao.js';
-import {TOGGLE_ACOUSTIC, TOGGLE_LESSON} from "./music-module";
+import { daoTabsGet } from '../dao/tabs-dao';
 
 // ------------------------------------
 // Constants
 // ------------------------------------
 
-export const TABS_REQUESTED = 'TABS_REQUESTED'
+export const TABS_REQUESTED = 'TABS_REQUESTED';
 export const TABS_RECEIVE_GET_SUCCESS = 'TABS_RECEIVE_GET_SUCCESS';
 export const TOGGLE_AUTOSCROLL = 'TOGGLE_SCROLL';
 
@@ -37,7 +36,9 @@ export const tabsReceiveGetSuccess = (payload = {}) => ({
   payload
 });
 
-export const tabsRequestGet = (term) => (dispatch) => {
+export const tabsReceiveGetFailure = (payload = {}) => () => Promise.reject(payload);
+
+export const tabsRequestGet = (term) => dispatch => {
   dispatch({
     type: TABS_REQUESTED
   });
@@ -48,17 +49,13 @@ export const tabsRequestGet = (term) => (dispatch) => {
         (response) => dispatch(tabsReceiveGetSuccess(response.data)),
         (err) => dispatch(tabsReceiveGetFailure(err))
       )
-  )
+  );
 };
 
-export const tabsReceiveGetFailure = (payload = {}) => () => Promise.reject(payload);
-
-export const toggleAutoscroll = () => {
-  return dispatch => {
-    dispatch({
-      type: TOGGLE_AUTOSCROLL
-    });
-  }
+export const toggleAutoscroll = () => dispatch => {
+  dispatch({
+    type: TOGGLE_AUTOSCROLL
+  });
 };
 
 // ------------------------------------

@@ -6,7 +6,6 @@
     "ajv": "^6.5.2",
     "axios": "^0.9.1",
     "bootstrap": "^4.1.1",
-    "eslint-plugin-react": "^7.10.0",
     "history": "^4.7.2",
     "jquery": "^3.3.1",
     "popper.js": "^1.14.3",
@@ -29,12 +28,16 @@
     "eject": "react-scripts eject"
   },
   "devDependencies": {
-    "eslint": "^5.2.0",
+    "babel-eslint": "^7.2.3",
+    "eslint": "^4.19.1",
+    "eslint-config-airbnb": "^17.1.0",
     "eslint-config-google": "^0.9.1",
     "eslint-config-standard": "^11.0.0",
-    "eslint-plugin-import": "^2.13.0",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-jsx-a11y": "^5.1.1",
     "eslint-plugin-node": "^7.0.1",
     "eslint-plugin-promise": "^3.8.0",
+    "eslint-plugin-react": "^7.11.1",
     "eslint-plugin-standard": "^3.1.0"
   }
 }

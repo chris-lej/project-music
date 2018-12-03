@@ -1,3 +1,3 @@
 import VideoContainer from './video-container';
 
-export default VideoContainer
+export default VideoContainer;

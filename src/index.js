@@ -5,9 +5,9 @@ import { ConnectedRouter } from 'react-router-redux';
 import store, { history } from './store';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import App from './containers/app';
+import './index.css';
 
-import './index.css'
-
+// eslint-disable-next-line no-undef
 const target = document.querySelector('#root');
 
 render(
