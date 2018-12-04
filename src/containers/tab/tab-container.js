@@ -47,7 +47,7 @@ export const TabContainer = (props) => {
 TabContainer.propTypes = {
   tabsIsLoading: PropTypes.bool.isRequired,
   tabsExist: PropTypes.bool.isRequired,
-  tabsObjects: PropTypes.object.isRequired,
+  tabsObjects: PropTypes.array.isRequired,
   lastArtist: PropTypes.string.isRequired,
   lastSong: PropTypes.string.isRequired
 };

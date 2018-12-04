@@ -1,7 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { youtubeSearchTree } from '../../modules/youtube-module'
+import PropTypes from 'prop-types';
+import { youtubeSearchTree } from '../../modules/youtube-module';
 import VideoView from './video-view';
+
 
 const mapStateToProps = (state) => ({
   youtubeSearchTree: youtubeSearchTree(state)
@@ -17,6 +19,7 @@ class VideoContainer extends React.Component {
         url
       );
     }
+    return null;
   };
 
   render = () => (
@@ -26,5 +29,10 @@ class VideoContainer extends React.Component {
     />
   );
 }
+
+
+VideoContainer.propTypes = {
+  youtubeSearchTree: PropTypes.array.isRequired
+};
 
 export default connect(mapStateToProps)(VideoContainer);

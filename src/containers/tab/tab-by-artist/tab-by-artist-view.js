@@ -25,7 +25,7 @@ TabByArtistView.propTypes = {
   suggestArtists: PropTypes.bool.isRequired,
   showTab: PropTypes.bool.isRequired,
   matchingArtistTab: PropTypes.any.isRequired,
-  tabsObject: PropTypes.object.isRequired
+  tabsObject: PropTypes.array.isRequired
 };
 
 export default TabByArtistView;
