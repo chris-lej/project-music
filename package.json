@@ -5,7 +5,7 @@
   "dependencies": {
     "@babel/core": "^7.2.0",
     "ajv": "^6.5.2",
-    "axios": "^0.9.1",
+    "axios": "^0.21.1",
     "bootstrap": "^4.1.1",
     "history": "^4.7.2",
     "jquery": "^3.3.1",
